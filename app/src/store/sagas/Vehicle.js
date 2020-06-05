@@ -14,7 +14,7 @@ export function* addVehicle(action) {
       yield put(vehiclesActions.addRequestSuccess('veículo adicionado com sucesso!'))
     }
   } catch (err) {
-    yield put(vehiclesActions.addMessageError('Verifique o valor digitado ou tente novamente mais tarde'))
+    yield put(vehiclesActions.addMessageError('Verifique o valor digitado ou tente novamente.'))
   }
 }
 

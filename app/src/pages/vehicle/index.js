@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Creators as VehicleAction} from '../../store/ducks/vehicles'
-import { Container, ButtonAdd, Notification, Card, List, Modal } from './style'
+import { Container, ButtonAdd, Card, List, Modal } from './style'
+import { logout } from '../../services/auth'
 import remove from '../../asserts/icon-remove.svg'
 import close from '../../asserts/icon-close.svg'
 
@@ -23,18 +24,12 @@ class Vehicle extends Component {
     const { plate } = this.state
 
     if (plate === '' || null) {
-      console.log('entrou')
       this.setState({
         error: 'É necessario a placa do veículo para adicionar',
       })
     } else {
       this.props.addVehicleRequest(this.state.plate)
       this.props.getVehicleRequest()
-      if(!!this.props.vahicles.msgErro) {
-        this.setState({
-          error: 'bajsaij'
-        })
-      }
 
       this.setState({
         plate: ''
@@ -46,6 +41,7 @@ class Vehicle extends Component {
     this.setState({
       error: ''
     })
+    this.props.closeModalError()
   }
 
   removeVehicle = async (id) => {
@@ -53,10 +49,18 @@ class Vehicle extends Component {
     this.props.getVehicleRequest()
   }
 
+  logoutUser = () => {
+    logout()
+    this.props.history.push("/veiculos")
+  }
+
   render(){
     return(
       <Container>
         <header>
+          <div>
+            <button onClick={this.logoutUser}>Sair</button>
+          </div>
           <form>
             <p>Adicione um novo veículo</p>
             <div>

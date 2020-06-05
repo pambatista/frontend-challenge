@@ -20,9 +20,9 @@ class Login extends Component {
       this.setState({ error: "Preencha os campos de email e senha." })
     } else {
       try {
-        const { data } = await api.post("/auth", { email, password });
+        const { data } = await api.post("/auth", { email, password })
         login(data.data.token)
-        this.props.history.push("/veiculos");
+        this.props.history.push("/veiculos")
       } catch (error) {
         this.setState({
           error: "Email ou senha inválida"

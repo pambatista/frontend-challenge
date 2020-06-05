@@ -17,6 +17,8 @@ export default function veiculos(state = STATE_INITIAL, action) {
       return {...state, error: action.payload.error}
     case 'ADD_MESSAGE':
       return {...state, msgErro: action.payload.message}
+    case 'CLOSE_MODAL':
+        return {...state, msgErro: ''}
     default:
       return state
   }
@@ -57,6 +59,10 @@ export const Creators = {
   addRequestFailure: error => ({
     type: 'ADD_REQUEST_FAILURE',
     payload: { error }
+  }),
+
+  closeModalError: () => ({
+    type: 'CLOSE_MODAL'
   })
 
 }
