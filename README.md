@@ -1,10 +1,9 @@
 # frontend-challenge
- Projeto realizado para teste de vaga front-end na easy-carros
+ Projeto realizado para teste de vaga front-end na Easy-carros
 
 ### pré-requisitos
-    você precisa instalar os seguintes pacotes antes de prosseguir:
-
-    *[yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable)
+ você precisa instalar os seguintes pacotes antes de prosseguir:
+* [yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable)
 ## Como rodar
 
 No diretório app (front-end):
