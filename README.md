@@ -8,13 +8,13 @@
 
 No diretório app (front-end):
 
-1.  Abra o terminal neste mesmo diretório
+1.  Abra o terminal neste diretório
 2. Digite `yarn` 
 3. Depois de todas as dependências baixadas digite `yarn start`
 
 No diretório api (back-end)
 
-1.  Abra o terminal neste mesmo diretório
+1.  Abra o terminal neste diretório
 2. Digite `yarn` 
 3. Depois de todas as dependências baixadas digite `yarn start`
 
