@@ -3,16 +3,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Creators as VehicleAction} from '../../store/ducks/vehicles'
-import { Container, ButtonAdd, Card, List, Modal } from './style'
+import { Container, Content } from './style'
 import { logout } from '../../services/auth'
-import remove from '../../asserts/icon-remove.svg'
-import close from '../../asserts/icon-close.svg'
+
+
+// components
+import Input from '../../components/Input'
+import Modal from '../../components/Modal'
+import List from '../../components/List'
 
 class Vehicle extends Component {
 
   state = {
     plate: '',
-    error: ''
+    error: '',
+    remove: false,
+    id: ''
   }
 
   componentDidMount() {
@@ -27,8 +33,13 @@ class Vehicle extends Component {
       this.setState({
         error: 'É necessario a placa do veículo para adicionar',
       })
+    } else if (plate.length < 7 ) {
+      this.setState({
+        error: 'O valor da placa não é valido',
+      })
     } else {
-      this.props.addVehicleRequest(this.state.plate)
+      const plate = this.state.plate.toUpperCase()
+      this.props.addVehicleRequest(plate)
       this.props.getVehicleRequest()
 
       this.setState({
@@ -39,14 +50,28 @@ class Vehicle extends Component {
 
   closeModal = () => {
     this.setState({
-      error: ''
+      error: '',
+      remove: false
     })
     this.props.closeModalError()
   }
 
-  removeVehicle = async (id) => {
-    this.props.removeVehicleRequest(id)
+  removeVehicle = async () => {
+    this.props.removeVehicleRequest(this.state.id)
     this.props.getVehicleRequest()
+    this.setState({
+      error: '',
+      remove: false,
+      id: '',
+    })
+  }
+
+  openModalRemoveVehicle = (vehicle) => {
+    this.setState({
+      error: `Deseja excluir o veiculo ${vehicle.plate} ? `,
+      remove: true,
+      id: vehicle.id
+    })
   }
 
   logoutUser = () => {
@@ -57,53 +82,38 @@ class Vehicle extends Component {
   render(){
     return(
       <Container>
-        <header>
-          <div>
-            <button onClick={this.logoutUser}>Sair</button>
-          </div>
-          <form>
-            <p>Adicione um novo veículo</p>
+        <Content>
+          <header>
             <div>
-              <input placeholder="Placa" type="text" value={this.state.plate} onChange={e => this.setState({plate: e.target.value})}/>
+              <button onClick={this.logoutUser}>Sair</button>
             </div>
-          </form>
-          <ButtonAdd onClick={this.addNeWVehicle}>Adicionar</ButtonAdd>
-        </header>
-
-        <List>
-          {
-            this.props.vahicles.data.map((vehicle,index) => (
-              <Card key={index}>
-                <div>
-                  <h3>Veículo</h3>
-                  <p><span>Placa</span> {vehicle.plate}</p>
-                </div>
-                <button onClick={()=>this.removeVehicle(vehicle.id)}><img src={remove}/></button>
-              </Card>
-            ))
-          }
-        </List>
-        {
-          (!!this.state.error || !!this.props.vahicles.msgErro) && (
-            <Modal>
-              <div>
-                <div>
-                <button>
-                  <img src={close} onClick={this.closeModal}/>
-                </button>
-                  <p>
-                      {
-                        !!this.state.error
-                        ? this.state.error
-                        : this.props.vahicles.msgErro
-                      }
-                    </p>
-                </div>
+            <form>
+              <div className="form-add">
+                <p>Adicione um novo veículo</p>
+                <Input
+                  type="text"
+                  id="placa"
+                  value={this.state.plate}
+                  handleInput={e => this.setState({plate: e.target.value.toUpperCase()})}
+                  placeholder="Placa"
+                />
+                <button onClick={this.addNeWVehicle}>Adicionar</button>
               </div>
-            </Modal>
-          )
-        }
-
+            </form>
+          </header>
+          <section>
+            <List
+              vahicles={this.props.vahicles.data}
+              removeVehicle={this.openModalRemoveVehicle}
+            />
+          </section>
+        </Content>
+        <Modal
+          text={this.state.error || this.props.vahicles.msgErro}
+          closeModal={this.closeModal}
+          remove={this.removeVehicle}
+          btnRemove={this.state.remove}
+        />
       </Container>
     )
   }

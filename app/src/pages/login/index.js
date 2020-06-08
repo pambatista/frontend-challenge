@@ -4,7 +4,11 @@ import car from '../../asserts/car.svg'
 import arrow from '../../asserts/icon-arrow.svg'
 import api from '../../services/api'
 import { login } from '../../services/auth'
-import { Container, Button, Notification } from './style'
+import { Container, Content, Button } from './style'
+
+// components
+import Input from '../../components/Input'
+import Notification from '../../components/Notification'
 
 class Login extends Component {
   state = {
@@ -31,34 +35,49 @@ class Login extends Component {
     }
   }
 
+  handleInput = (e) => {
+    const {name, value} = e.target
+    console.log(value, e.target)
+    this.setState({
+      [name]: value
+    })
+  }
+
   render(){
     return (
       <Container>
-        <img src={car}/>
-        <Notification error={!!this.state.error}>
-          {
-            !!this.state.error && <div>{this.state.error}</div>
-          }
-        </Notification>
-        <h1>Login</h1>
-        <form>
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input type="email" value={this.state.email} onChange={ e => this.setState({ email: e.target.value})} />
-          </div>
-          <div>
-            <label htmlFor="password">Senha:</label>
-            <input id="password" type="password" value={this.state.password} onChange={ e => this.setState({ password: e.target.value})}/>
-          </div>
-        </form>
-        <Button>
-          <button onClick={this.handleSignIn}>
-            <div>
-              Login
-              <img src={arrow}/>
-            </div>
-          </button>
-        </Button>
+        <Content>
+          <img src={car}  alt="carro" />
+
+          <Notification text={this.state.error} />
+
+          <h1>Login</h1>
+          <form>
+            <Input
+              type="email"
+              label="Email"
+              id="email"
+              value={this.state.email}
+              handleInput={this.handleInput}
+            />
+            <Input
+              type="password"
+              label="Senha"
+              id="password"
+              value={this.state.password}
+              handleInput={this.handleInput}
+            />
+          </form>
+          <Button>
+            <button onClick={this.handleSignIn}>
+              <div>
+                Login
+                <img src={arrow} alt="seta" />
+              </div>
+            </button>
+          </Button>
+        </Content>
+
       </Container>
     )
   }
