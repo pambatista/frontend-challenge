@@ -1,4 +1,4 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
 export const ListContent = Styled.ul`
   list-style-type:none;
@@ -6,4 +6,4 @@ export const ListContent = Styled.ul`
   @media (min-width: 768px) {
     width: 70%;
   }
-`
+`;

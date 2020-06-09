@@ -1,22 +1,36 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { ListContent } from './style'
+import { ListContent } from './style';
 
 // components
-import Card from '../Card'
+import Card from '../Card';
 
-const List = (props) => (
-  <ListContent>
-    {
-      props.vahicles.map((vehicle,index) => (
-        <Card
-          key={index}
-          vehicle={vehicle}
-          remove={()=> props.removeVehicle(vehicle)}
-        />
-      )).reverse()
-    }
-  </ListContent>
-)
+const List = (props) => {
+  const { vehicles } = props;
+  return (
+    <ListContent>
+      {
+        vehicles.map((vehicle) => (
+          <Card
+            key={vehicle.id}
+            vehicle={vehicle}
+            removeVehicle={() => props.removeVehicle(vehicle)}
+          />
+        )).reverse()
+      }
+    </ListContent>
+  );
+};
 
-export default List
+List.propTypes = {
+  vehicles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      plate: PropTypes.string,
+    }),
+  ).isRequired,
+  removeVehicle: PropTypes.func.isRequired,
+};
+
+export default List;

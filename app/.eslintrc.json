@@ -16,9 +16,8 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-    "plugins": ["import", "jsx-a11y","react", "prettier"],
+    "plugins": ["import", "jsx-a11y","react"],
     "rules": {
-      "prettier/prettier": "error",
       "react/jsx-filename-extension": [
         "error",
         {

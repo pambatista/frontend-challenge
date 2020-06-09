@@ -5,22 +5,22 @@ const STATE_INITIAL = {
   data: [],
   error: '',
   message: '',
-  msgErro: ''
-}
+  msgErro: '',
+};
 export default function veiculos(state = STATE_INITIAL, action) {
-  switch(action.type){
+  switch (action.type) {
     case 'GET_VEHICLE_SUCCESS':
-      return {...state, data: [...action.payload.data]}
+      return { ...state, data: [...action.payload.data] };
     case 'ADD_REQUEST_SUCCESS':
-      return {...state, message: action.payload.message}
+      return { ...state, message: action.payload.message };
     case 'ADD_REQUEST_FAILURE':
-      return {...state, error: action.payload.error}
+      return { ...state, error: action.payload.error };
     case 'ADD_MESSAGE':
-      return {...state, msgErro: action.payload.message}
+      return { ...state, msgErro: action.payload.message };
     case 'CLOSE_MODAL':
-        return {...state, msgErro: ''}
+      return { ...state, msgErro: '' };
     default:
-      return state
+      return state;
   }
 }
 /**
@@ -31,38 +31,38 @@ export const Creators = {
     type: 'GET_VEHICLE_REQUEST',
   }),
 
-  getVehicleSuccess: data => ({
+  getVehicleSuccess: (data) => ({
     type: 'GET_VEHICLE_SUCCESS',
-    payload: { data }
+    payload: { data },
   }),
 
-  removeVehicleRequest: id => ({
+  removeVehicleRequest: (id) => ({
     type: 'REMOVE_VEHICLE_REQUEST',
-    payload: { id }
+    payload: { id },
   }),
 
-  addVehicleRequest: data => ({
+  addVehicleRequest: (data) => ({
     type: 'ADD_VEHICLE_REQUEST',
-    payload: { data }
+    payload: { data },
   }),
 
-  addMessageError: message => ({
+  addMessageError: (message) => ({
     type: 'ADD_MESSAGE',
-    payload: { message }
+    payload: { message },
   }),
 
-  addRequestSuccess: message => ({
+  addRequestSuccess: (message) => ({
     type: 'ADD_REQUEST_SUCCESS',
-    payload: { message }
+    payload: { message },
   }),
 
-  addRequestFailure: error => ({
+  addRequestFailure: (error) => ({
     type: 'ADD_REQUEST_FAILURE',
-    payload: { error }
+    payload: { error },
   }),
 
   closeModalError: () => ({
-    type: 'CLOSE_MODAL'
-  })
+    type: 'CLOSE_MODAL',
+  }),
 
-}
+};

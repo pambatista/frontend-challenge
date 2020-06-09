@@ -1,39 +1,54 @@
-import React from  'react'
-import close from '../../asserts/icon-close.svg'
-import { ModalContent } from './style'
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import close from '../../asserts/icon-close.svg';
+import { ModalContent } from './style';
 
 const Modal = (props) => {
-  if(!!!props.text) {
-    return null
+  const {
+    text, btnRemove, closeModal, remove,
+  } = props;
+  if (!text) {
+    return null;
   }
-  return(
-    <ModalContent remove={props.btnRemove}>
+  return (
+    <ModalContent remove={btnRemove}>
       <div>
-      <div>
-        <button className="btn_close">
-          <img src={close} onClick={props.closeModal}/>
-        </button>
-        <div className="content">
-        <p>
+        <div>
+          <button type="button" className="btn_close" onClick={closeModal}>
+            <img src={close} alt="close" />
+          </button>
+          <div className="content">
+            <p>
               {
-                props.text
+                text
               }
-          </p>
-          {
-            props.btnRemove &&
-            ( <div className="buttons">
-                <button className="cancel" onClick={props.closeModal}> cancelar </button>
-                <button className="remove" onClick={props.remove}> Excluir </button>
-              </div>
+            </p>
+            {
+            btnRemove
+            && (
+            <div className="buttons">
+              <button className="cancel" type="button" onClick={closeModal}>
+                cancelar
+              </button>
+              <button className="remove" type="button" onClick={remove}> Excluir </button>
+            </div>
             )
           }
 
+          </div>
         </div>
       </div>
-    </div>
 
     </ModalContent>
-  )
-}
+  );
+};
 
-export default Modal
+Modal.propTypes = {
+  text: PropTypes.string.isRequired,
+  btnRemove: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+export default Modal;

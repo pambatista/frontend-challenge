@@ -1,18 +1,18 @@
-import React from 'react'
-import { Container } from './style'
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { Container } from './style';
 
 const Notification = (props) => {
-  if (!!!props.text) {
-    return <Container />
-  } else {
-    return (
-      <Container error={props.text}>
-        {
-          props.text
-        }
-      </Container>
-    )
+  const { text } = props;
+  if (!text) {
+    return <Container />;
   }
-}
+  return <Container error={text}>{text}</Container>;
+};
 
-export default Notification
+Notification.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+export default Notification;

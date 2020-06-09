@@ -1,4 +1,4 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
 export const Container = Styled.div`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -19,4 +19,4 @@ export const Container = Styled.div`
     text-align: center;
     font-weight: 300;
   }
-`
+`;

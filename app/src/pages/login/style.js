@@ -1,4 +1,4 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
 export const Container = Styled.div`
   width: 100%;
@@ -9,7 +9,7 @@ export const Container = Styled.div`
     justify-content: center;
     align-items: center;
   }
-`
+`;
 
 export const Content = Styled.div`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -35,7 +35,7 @@ export const Content = Styled.div`
     color: #FFFFFF;
     margin: 18px 0;
   }
-`
+`;
 export const Button = Styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
 
@@ -72,4 +72,4 @@ export const Button = Styled.div`
       height: 24px;
     }
   }
-`
+`;

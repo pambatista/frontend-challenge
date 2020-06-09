@@ -1,21 +1,23 @@
-import React from 'react'
-import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
+import React from 'react';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
 
-import { isAuthenticated } from '../services/auth'
-import Login from '../pages/login'
-import Vehicle from '../pages/vehicle'
-import NotFound from '../pages/notFound'
+import { isAuthenticated } from '../services/auth';
+import Login from '../pages/login';
+import Vehicle from '../pages/vehicle';
+import NotFound from '../pages/notFound';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
+    render={(props) => (isAuthenticated() ? (
+      <Component {...props} />
+    ) : (
+      <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+    ))}
   />
 );
 
@@ -28,6 +30,6 @@ const Routes = () => (
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
-)
+);
 
-export default Routes
+export default Routes;

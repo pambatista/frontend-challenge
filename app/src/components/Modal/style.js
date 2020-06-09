@@ -1,4 +1,4 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
 export const ModalContent = Styled.div`
     display: flex;
@@ -27,7 +27,7 @@ export const ModalContent = Styled.div`
         margin: 0;
         z-index: 30;
         position: fixed;
-        background: ${props => (props.remove ? '#a0cadcfa' : '#ff866b' )};
+        background: ${(props) => (props.remove ? '#a0cadcfa' : '#ff866b')};
         position: relative;
         overflow: hidden;
         .content {
@@ -75,7 +75,7 @@ export const ModalContent = Styled.div`
             font-size: 16px;
             font-family: 'Roboto';
             text-align: center;
-            color: ${props => (props.remove ? '#363636' : 'red' )};
+            color: ${(props) => (props.remove ? '#363636' : 'red')};
           }
         }
 
@@ -92,4 +92,4 @@ export const ModalContent = Styled.div`
         }
       }
     }
-`
+`;

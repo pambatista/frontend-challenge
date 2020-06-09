@@ -1,4 +1,4 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
 export const CardContent = Styled.li`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -54,5 +54,4 @@ export const CardContent = Styled.li`
     }
   }
 
-`
-
+`;

@@ -1,4 +1,4 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
 export const Container = Styled.div`
   width: 100%;
@@ -7,7 +7,7 @@ export const Container = Styled.div`
     justify-content: center;
     align-items: center;
   }
-`
+`;
 
 export const Content = Styled.div`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -71,5 +71,4 @@ export const Content = Styled.div`
       align-items: center;
     }
   }
-`
-
+`;
